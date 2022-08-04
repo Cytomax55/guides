@@ -29,7 +29,7 @@ docker stop findorad && docker rm findorad || exit 1
 docker stop findorad && docker rm findorad || exit 1
 ```
 - Import tmp.gen.keypair
-- Create files node.mnemonic
+- Create files node.mnemonic, replace `mnemonic phrases` with your 24 words from tmp.gen.keypair file:
 ```bash
 echo 'mnemonic phrases'> /data/findora/mainnet/node.mnemonic
 ```
