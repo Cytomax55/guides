@@ -1,6 +1,24 @@
 # Easy Node's Post Install Tips
 Here's a few things to know and check up on after you get setup on Findora.
 
+### Backup Key Files
+Backup the following files, run `cat <filename>` to see the contents or use an sFTP program to transfer them to a secure location. These contain private information, do not share!!!
+
+```bash
+# Wallet recovery files
+tmp.gen.keypair
+node.mnemonic
+# Validator information file, this one can be recreated but handy to save
+staker_memo
+```
+
+Backup all files inside of the following folder as well:
+
+```bash
+# Validator recovery file
+/data/findora/mainnet/tendermint/config/
+```
+
 ### Common Commands
 The most commonly used commands and how to find the rest that may be needed.
 

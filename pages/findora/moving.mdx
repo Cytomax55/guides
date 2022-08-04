@@ -2,18 +2,54 @@ import Callout from 'nextra-theme-docs/callout'
 import Image from 'next/image'
 
 ### Our Notes on Moving Servers
-For people looking to move providers and re-create a validator, you'll need to import a few files and be sure to shut off the old server long before recreating a server to avoid double signing slashing (5% from your pool). Missing blocks slashing is far less and easier to explain than getting slashed for 5%.
+For people looking to move providers and re-create a validator, you'll need to import a few files and **be sure to shut off the old server** long before recreating a server to avoid **double signing slashing (5% from your pool)**. The slashing fee for Missing Blocks is far less and easier to explain than getting slashed for 5%.
 
-We'll make notes along the way on the files needed inside of our [installation guide](https://guides.easynode.one/findora/easynode) that you should provide. 
-
-You'll want to remake the following files when the directories are created:
+## Backup Files
+You should already have a backup copy of the following files & folders:
 
 ```text
 ~/tmp.gen.keypair
-/data/findora/mainnet/tendermint/config/priv_validator_key.json
+/data/findora/mainnet/tendermint/config/
 ```
 
-When you run the auto setup script it should detect that these files are in place.
+When you get to running the automated script in the guide, you can make sure you've updated both of these files before you run the bash script to install.
+
+## Using a Temporary Wallet
+The best method to avoid double signing is to setup a new validator wallet and private key doing a normal installation of Findora. When the docker container is synced up you can then:
+
+Old Server:
+- Stop Docker To Stop Signing
+```bash
+docker stop findorad && docker rm findorad || exit 1
+```
+
+New Server:
+- Stop Docker To Stop Signing
+```bash
+docker stop findorad && docker rm findorad || exit 1
+```
+- Import tmp.gen.keypair and create files (node.mnemonic and /data/findora/mainnet/mainnet_node.key)
+- Import /data/findora/mainnet/tendermint/config files
+- Verify new information is shown in `fn show` with your proper wallet address showing. Verify it matches key on your old validator!
+- Restart Docker Container with previous keys:
+```bash
+docker run -d \
+    -v ${ROOT_DIR}/tendermint:/root/.tendermint \
+    -v ${ROOT_DIR}/findorad:/tmp/findora \
+    -p 8669:8669 \
+    -p 8668:8668 \
+    -p 8667:8667 \
+    -p 8545:8545 \
+    -p 26657:26657 \
+    -e EVM_CHAIN_ID=2152 \
+    --name findorad \
+    ${FINDORAD_IMG} node \
+    --ledger-dir /tmp/findora \
+    --tendermint-host 0.0.0.0 \
+    --tendermint-node-key-config-path="/root/.tendermint/config/priv_validator_key.json" \
+    --enable-query-service \
+    --enable-eth-api-service
+```
 
 <Callout type="error" emoji="️🚫">
 If your validator address is different than what your old server has (or is different than the address ini priv_validator_key.json) then verify your priv_validator_key.json file is corrct or update it, reconnect it to `fn`, restart your docker container and it should start signing on your previous validator keys.
