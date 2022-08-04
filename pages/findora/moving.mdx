@@ -28,7 +28,11 @@ docker stop findorad && docker rm findorad || exit 1
 ```bash
 docker stop findorad && docker rm findorad || exit 1
 ```
-- Import tmp.gen.keypair and create files (node.mnemonic and /data/findora/mainnet/mainnet_node.key)
+- Import tmp.gen.keypair
+- Create files node.mnemonic
+```bash
+echo 'mnemonic phrases'> /data/findora/mainnet/node.mnemonic
+```
 - Import /data/findora/mainnet/tendermint/config files
 - Verify new information is shown in `fn show` with your proper wallet address showing. Verify it matches key on your old validator!
 - Restart Docker Container with previous keys:
