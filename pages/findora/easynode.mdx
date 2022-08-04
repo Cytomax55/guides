@@ -53,18 +53,10 @@ The official guide doesn't mention that you need to install Docker.
 Taken from [this guide](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-20-04) here's our notes for installing docker on Ubuntu 20.04LTS once your server is online and logged in as the user `servicefindora` (update if you used a different account):
 
 ```bash
-sudo apt update -y
-sudo apt install apt-transport-https ca-certificates curl software-properties-common -y
+sudo apt update -y && sudo apt install apt-transport-https ca-certificates curl software-properties-common -y && curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add - && sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable" && sudo apt install docker-ce -y
 ```
 
-```bash
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-```
-
-```bash
-sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
-sudo apt install docker-ce -y
-```
+Run the following. If your username is not `servicefindora` update the username below first:
 
 ```bash
 sudo usermod -aG docker servicefindora
@@ -90,25 +82,14 @@ Run the following to download and setup the main app `fn`:
 
 ```bash
 # download and move to your path
-wget https://wiki.findora.org/bin/linux/fn
-chmod +x fn
-sudo mv fn /usr/local/bin/
+wget https://wiki.findora.org/bin/linux/fn && chmod +x fn && sudo mv fn /usr/local/bin/
 ```
 
 ### Create Wallet, Directory Structure, and Move Keys
-Run initial setup items, you can skip the lines that start with # those are just notes:
+Run initial setup items, If your username is not `servicefindora` update the username below first:
 
 ```bash
-# go to your home directory
-cd ~/
-# pre-set some exports and set permissions for your user account
-export NAMESPACE=mainnet
-# create folders and set permissions, customize username if different than `servicefindora`
-sudo mkdir -p /data/findora
-sudo chown servicefindora:servicefindora /data/findora
-mkdir -p /data/findora/mainnet/tendermint/
-export ROOT_DIR=/data/findora/mainnet/
-sudo chown -R servicefindora:servicefindora /data/findora/
+cd ~/ && export NAMESPACE=mainnet && sudo mkdir -p /data/findora && sudo chown servicefindora:servicefindora /data/findora && mkdir -p /data/findora/mainnet/tendermint/ && export ROOT_DIR=/data/findora/mainnet/ && sudo chown -R servicefindora:servicefindora /data/findora/
 ```
 
 <Callout type="error" emoji="️🚫">
@@ -137,7 +118,7 @@ cp tmp.gen.keypair /data/findora/mainnet/mainnet_node.key
 Setup private phrase info for the `fn` application to access your wallet. If you need your mnemonic phrase run `cat tmp.gen.keypair` to reveal your **private validation information and mnemonic words** to you. This is a good time to make a copy/back up your wallet file information (tmp.gen.keypair) for restoration of your validator:
 
 ```bash
-# ex)
+# Below is an example of how this command should be sent. Replace the fake mnemonic in it with the mnemonic phrase in your tmp.gen.keypair file:
 # echo "repair drink action brass term blur fat doll spoon thumb raise squirrel tornado engine tumble picnic approve elegant tube urge ghost secret seminar blame" > ${ROOT_DIR}/node.mnemonic
 echo <24 mnemonic keywords> > ${ROOT_DIR}/node.mnemonic
 ```
@@ -171,9 +152,7 @@ docker run -d \
 
 ### Download Auto Installation Script
 
-See [this link](https://wiki.findora.org/docs/guides/auto-setup#download-and-run-the-automated-setup-script) to get the most updated version of the **node_init_mainnet.sh** script to run.
-
-Example command you can use to download the script to your server, **copy the current link from their guide as it may be newer!**:
+See [this link](https://wiki.findora.org/docs/guides/auto-setup#download-and-run-the-automated-setup-script) to get the most updated version of the **node_init_mainnet.sh** script to run. Simply right click the link and copy the shortcut to use in the commands below:
 
 ```bash
 wget https://wiki.findora.org/assets/files/node_init_mainnet-423a36f2adaaeab9de7ff63e61d3d4c1.sh
