@@ -14,16 +14,16 @@ You should already have a backup copy of the following files & folders:
 
 When you get to running the automated script in the guide, you can make sure you've updated both of these files before you run the bash script to install.
 
-## Using a Temporary Wallet
-The best method to avoid double signing is to setup a new validator wallet and private key doing a normal installation of Findora. When the docker container is synced up you can then:
+## How to Migrate Servers
+The best method to avoid double signing is to setup a new validator wallet and private key doing a normal installation of Findora via our guide on a new server. Once `fn show` is working with the new wallet info and when the docker container is synced up you can then proceed with the following:
 
-Old Server:
+### On your old server
 - Stop Docker To Stop Signing
 ```bash
 docker stop findorad && docker rm findorad || exit 1
 ```
 
-New Server:
+### On your new server
 - Stop Docker To Stop Signing
 ```bash
 docker stop findorad && docker rm findorad || exit 1
