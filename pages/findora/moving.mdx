@@ -31,7 +31,7 @@ docker stop findorad && docker rm findorad && rm -rf /data/findora/mainnet/tende
 docker stop findorad && docker rm findorad && rm -rf /data/findora/mainnet/tendermint/config/addrbook.json
 ```
 - Import tmp.gen.keypair
-- Create files node.mnemonic, replace `mnemonic phrases` with your 24 words from tmp.gen.keypair file:
+- Create or Import node.mnemonic file. Transfer your node.mnemonic to /data/findora/mainnet/ folder or manually replace `mnemonic phrases` with your 24 words from tmp.gen.keypair file:
 ```bash
 echo 'mnemonic phrases'> /data/findora/mainnet/node.mnemonic
 ```
