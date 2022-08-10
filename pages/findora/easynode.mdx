@@ -5,7 +5,7 @@ import Image from 'next/image'
 This guide is for setting up a brand new wallet & validator for the first time. 
 
 <Callout type="warning" emoji="⚠️">
-If you're moving to a new server you can mostly use this guide but see our notes on moving over tmp.gen.keypair and priv_validator_key.json [right here](https://guides.easyonde.one/findora/moving).
+If you're moving to a new server you can mostly use this guide but see our notes on moving over tmp.gen.keypair and priv_validator_key.json [right here](https://guides.easynode.one/findora/moving).
 </Callout>
 
 ## Intro
@@ -117,15 +117,6 @@ Move your wallet to the key location:
 ```bash
 # copy key file to location that validator will use now that the location exists
 cp tmp.gen.keypair /data/findora/mainnet/mainnet_node.key
-```
-
-### Create Memonic File
-Setup private phrase info for the `fn` application to access your wallet. If you need your mnemonic phrase run `cat tmp.gen.keypair` to reveal your **private validation information and mnemonic words** to you. This is a good time to make a copy/back up your wallet file information (tmp.gen.keypair) for restoration of your validator:
-
-```bash
-# Below is an example of how this command should be sent. Replace the fake mnemonic in it with the mnemonic phrase in your tmp.gen.keypair file:
-# echo "repair drink action brass term blur fat doll spoon thumb raise squirrel tornado engine tumble picnic approve elegant tube urge ghost secret seminar blame" > ${ROOT_DIR}/node.mnemonic
-echo <24 mnemonic keywords> > ${ROOT_DIR}/node.mnemonic
 ```
 
 ### Create Docker Container
