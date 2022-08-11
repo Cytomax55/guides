@@ -38,6 +38,25 @@ echo 'mnemonic phrases'> /data/findora/mainnet/node.mnemonic
 ```
 - Import /data/findora/mainnet/tendermint/config files
 - Verify new information is shown in `fn show` with your proper wallet address showing. Verify it matches key on your old validator!
+- Pull in latest image manually to avoid an issue:
+```text
+docker run -d \
+    -v ${ROOT_DIR}/tendermint:/root/.tendermint \
+    -v ${ROOT_DIR}/findorad:/tmp/findora \
+    -p 8669:8669 \
+    -p 8668:8668 \
+    -p 8667:8667 \
+    -p 8545:8545 \
+    -p 26657:26657 \
+    -e EVM_CHAIN_ID=2152 \
+    --name findorad \
+    ${FINDORAD_IMG} node \
+    --ledger-dir /tmp/findora \
+    --tendermint-host 0.0.0.0 \
+    --tendermint-node-key-config-path="/root/.tendermint/config/priv_validator_key.json" \
+    --enable-query-service \
+    --enable-eth-api-service
+```
 - Restart Docker Container with previous keys using the update_image_version script:
 ```bash
 wget https://wiki.findora.org/assets/files/update_version_mainnet-4f20384f16d1f0e2d90e1f7ebc7ea935.sh && bash -x update_version_mainnet-4f20384f16d1f0e2d90e1f7ebc7ea935.sh
