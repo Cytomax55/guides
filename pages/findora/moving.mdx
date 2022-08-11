@@ -31,6 +31,7 @@ docker stop findorad && docker rm findorad && rm -rf /data/findora/mainnet/tende
 docker stop findorad && docker rm findorad && rm -rf /data/findora/mainnet/tendermint/config/addrbook.json
 ```
 - Import tmp.gen.keypair
+- Import /data/findora/mainnet/mainnet_node.key or `cp tmp.gen.keypair /data/findora/mainnet/mainnet_node.key`
 - Create or Import node.mnemonic file. Transfer your node.mnemonic to /data/findora/mainnet/ folder or manually replace `mnemonic phrases` with your 24 words from tmp.gen.keypair file:
 ```bash
 echo 'mnemonic phrases'> /data/findora/mainnet/node.mnemonic
@@ -40,7 +41,7 @@ echo 'mnemonic phrases'> /data/findora/mainnet/node.mnemonic
 - Restart Docker Container with previous keys using the update_image_version script:
 ```bash
 wget https://wiki.findora.org/assets/files/update_version_mainnet-4f20384f16d1f0e2d90e1f7ebc7ea935.sh && bash -x update_version_mainnet-4f20384f16d1f0e2d90e1f7ebc7ea935.sh
-```
+```  
 
 <Callout type="error" emoji="️🚫">
 If your validator address is different than what your old server has (or is different than the address ini priv_validator_key.json) then verify your priv_validator_key.json file is corrct or update it, reconnect it to `fn`, restart your docker container and it should start signing on your previous validator keys.
