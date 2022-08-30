@@ -1,8 +1,8 @@
 # Changing Shards
 Some quick notes on swapping shards. This is an advanced tactic which requires some previous knowledge to pull off.
 
-## How to move shards at an epoch change
-There's some things you'll need to get ready on the front end to swap shards:
+## Moving Shards
+Here's how to move shards at an epoch change. There's some things you'll need to get ready on the front end to swap shards:
 - Spin up a server on your new shard, creating new .key/.pass files (or loading ones you previously had for the target shard), and get the database in sync
 - Once synced up you are ready to add the new key from the new shard onto the blockchain via `edit-validator` commands
 - Once new keys are added, remove the old keys from the old shard
