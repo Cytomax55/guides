@@ -58,17 +58,16 @@ This script will wipe your data and reload a fresh database. This can take some 
 ## Validator Information & Rate Updates
 Here's a few commands you'll use for submitting validator info & rate updates.
 ### Updating Validator Information
-Simply edit your staker_memo file and then re-submit the updated information with following command:
+Simply edit your staker_memo file and then re-submit the updated information with following command:  
 `fn staker-update -M "$(cat staker_memo)"`
 
 ### Updating Rate (Fee)
-If you would like to change your commission simply add the `-R` flag and your new rate, this is an example to set it to 5% commission:
+If you would like to change your commission simply add the `-R` flag and your new rate, this is an example to set it to 5% commission:  
 `fn staker-update -R 0.05`
 
 ### Update Info & Rate
-If you would like to update both at the same time you can chain the commands together, ie:
+If you would like to update both at the same time you can chain the commands together, ie:  
 `fn staker-update -M "$(cat staker_memo) -R 0.05"`
 
 ## Resources
-
-[Findora SmartStake](https://findora.smartstake.io) Stats
+[Findora SmartStake](https://findora.smartstake.io) Stats  
