@@ -48,14 +48,14 @@ curl 'http://localhost:8668/version' # Only if you set the 'ENABLE_LEDGER_SERVIC
 curl 'http://localhost:8667/version' # Only if you set the 'ENABLE_QUERY_SERVICE'
 ```
 
-## Validator Updates
+## Validator Software Version Updates
 See [this page](https://wiki.findora.org/docs/guides/update-version) for tips & links to scripts to update the validator container.
 ### Update Image Version
 The version_update_mainnet.sh script will stop your container, pull in any updates, and restart the container if your files are in the proper spot and your permissions are set properly.
 ### Safety Clean
 This script will wipe your data and reload a fresh database. This can take some time so there will be missed blocks but it will just clean the data and restart your validator without wiping other files.
 
-## Updating Validator Information & Rate
+## Validator Information & Rate Updates
 Here's a few commands you'll use for submitting validator info & rate updates.
 ### Updating Validator Information
 Simply edit your staker_memo file and then re-submit the updated information with following command:
