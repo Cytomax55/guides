@@ -1,7 +1,7 @@
 # Easy Node's Post Install Tips
 Here's a few things to know and check up on after you get setup on Findora.
 
-### Backup Key Files
+## Backup Key Files
 Backup the following files, run `cat <filename>` to see the contents or use an sFTP program to transfer them to a secure location. These contain private information, do not share!!!
 
 ```bash
@@ -19,17 +19,17 @@ Backup all files inside of the following folder as well:
 /data/findora/mainnet/tendermint/config/
 ```
 
-### Common Commands
+## Common Commands
 The most commonly used commands and how to find the rest that may be needed.
 
-## Check Logs
+### Check Logs
 Run the following to follow along live with your logs:
 
 ```bash
 docker logs -f findorad
 ```
 
-## Check Signing
+### Check Signing
 Run the following on console on your server to show the latest stats.
 
 ```bash
@@ -38,7 +38,7 @@ fn show
 
 ![FN Show Info](/fn_show.png)
 
-## Check Status
+### Check Status
 If the following commands return status messages without any errors, then your node has been successfully configured and started:
 
 ```bash
