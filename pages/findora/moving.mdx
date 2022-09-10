@@ -15,16 +15,16 @@ You should already have a backup copy of the following files & folders:
 When you get to running the automated script in the guide, you can make sure you've updated both of these files before you run the bash script to install.
 
 ## How to Migrate Servers
-The best method to avoid double signing is to [use our installation guide](https://guides.easynode.one/findora/easynode) to setup a totally separate, brand new validator, new wallet and new private key doing a normal installation of Findora. Load your server up to the point of waiting for catching up to be `true` before proceeding to upgrading.
+The best method to avoid double signing is to [use our installation guide](https://guides.easynode.one/findora/easynode) to setup a totally separate, brand new validator, new wallet and new private key doing a normal installation of Findora. Load your server up to the point of waiting for catching up to be `true` before proceeding to upgrading.  
 
 ### On your new server
-Once you are synced up stop your container to being replacing your key files.
+Once you are synced up stop your container to being replacing your key files.  
 
 ```bash
 docker container stop findorad
 ```
 
-Verify your container is shut off by running `docker ps` and making sure that it no longer shows your findorad container as online.
+Verify your container is shut off by running `docker ps` and making sure that it no longer shows your findorad container as online.  
 
 Once stopped, Update all of the following files with the same files on your old system:
 - /data/findora/mainnet/node.mnemonic
@@ -33,7 +33,9 @@ Once stopped, Update all of the following files with the same files on your old 
 Update all the files in the following folder with the contents of the same folder on your old system:
 - /data/findora/mainnet/tendermint/config
 
-Verify wallet information is shown in `fn show` with your proper wallet address showing. Verify it matches key on your old validator! **DO NOT ATTEMPT TO START THE NEW SERVER YET OR YOU MAY DOUBLE SIGN**.
+Verify wallet information is shown in `fn show` with your proper wallet address showing. Verify it matches key on your old validator!  
+
+**DO NOT ATTEMPT TO START THE NEW SERVER YET OR YOU MAY DOUBLE SIGN**  
 
 ### On your old server
 Now is the time to stop your old server to avoid having double singing.
@@ -43,34 +45,13 @@ Stop Docker To Stop Signing
 docker stop findorad && docker rm findorad && rm -rf /data/findora/mainnet/tendermint/config/addrbook.json
 ```
 
-From here on down the guide the following tasks are time dependent as you'll begin to miss signatures at this point.
+From here on down the guide the following tasks are time dependent as you'll begin to miss signatures at this point.  
 
 ### Back on your new server
 
-- Pull in latest image manually to avoid an issue:
-```text
-docker run -d \
-    -v ${ROOT_DIR}/tendermint:/root/.tendermint \
-    -v ${ROOT_DIR}/findorad:/tmp/findora \
-    -p 8669:8669 \
-    -p 8668:8668 \
-    -p 8667:8667 \
-    -p 8545:8545 \
-    -p 26657:26657 \
-    -e EVM_CHAIN_ID=2152 \
-    --name findorad \
-    ${FINDORAD_IMG} node \
-    --ledger-dir /tmp/findora \
-    --tendermint-host 0.0.0.0 \
-    --tendermint-node-key-config-path="/root/.tendermint/config/priv_validator_key.json" \
-    --enable-query-service \
-    --enable-eth-api-service
-```
-- Restart Docker Container with previous keys using the update_image_version script:
+- Restart your Findorad Docker Container using the update_image_version script:
 ```bash
 wget https://wiki.findora.org/assets/files/update_version_mainnet-4f20384f16d1f0e2d90e1f7ebc7ea935.sh && bash -x update_version_mainnet-4f20384f16d1f0e2d90e1f7ebc7ea935.sh
 ```  
 
-<Callout type="error" emoji="️🚫">
-If your validator address is different than what your old server has (or is different than the address ini priv_validator_key.json) then verify your priv_validator_key.json file is corrct or update it, reconnect it to `fn`, restart your docker container and it should start signing on your previous validator keys.
-</Callout>
+Verify your server catches up and is now signing blocks.
