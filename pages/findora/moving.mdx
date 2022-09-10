@@ -45,6 +45,13 @@ Stop Docker To Stop Signing
 docker stop findorad && docker rm findorad && rm -rf /data/findora/mainnet/tendermint/config/addrbook.json
 ```
 
+I also shutdown the old server at this point to make sure there's 0 chance of double signing. You should be ok without shutting down but if you'd like to be safe run:
+```bash
+sudo init 0
+```
+
+**AT THIS POINT THERE IS NO FURTHER RISK OF DOUBLE SINGING BUT YOU ARE MISSING BLOCKS NOW**  
+
 From here on down the guide the following tasks are time dependent as you'll begin to miss signatures at this point.  
 
 ### Back on your new server
