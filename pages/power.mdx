@@ -22,10 +22,24 @@ runcmd:
   - apt-get upgrade -y
   - curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
   - add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
-  - apt install apt-transport-https ca-certificates curl software-properties-common docker-ce docker-ce-cli containerd.io dnsutils nethogs python3-pip python3-dotenv -y
+  - apt install apt-transport-https ca-certificates curl software-properties-common docker-ce docker-ce-cli containerd.io bind9-dnsutils git python3-pip python3-dotenv unzip -y
   - systemctl start docker
   - systemctl enable docker
   - usermod -aG docker servicefindora
   - cd
   - wget https://raw.githubusercontent.com/easy-node-one/findora-validator-scripts/main/node_init.sh -O /home/servicefindora/node_init.sh
   ```
+
+## Findora
+To install a brand new Findora validator on a new wallet at this point simply run this once cloud-init downloads the file and you have docker group access:
+
+```text
+bash -x node_init.sh
+```
+
+## Harmony
+To download and run the toolbox, run the following code to get started:
+
+```text
+cd ~/ && git clone https://github.com/easy-node-one/validatortoolbox.git && cd validatortoolbox && pip3 install -r requirements.txt
+```
