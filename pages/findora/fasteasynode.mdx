@@ -4,7 +4,10 @@ import Image from 'next/image'
 # Easy Node's Findora "Automated" Validator Setup Guide
 This guide is for setting up a brand new wallet & validator for the first time. **Do not run this on your existing validator or your keys will be overwritten**  
 
-We've created a pre-customized version of the node_installer script from Findora which we host publicly on our [github page here](https://github.com/easy-node-one/findora-validator-scripts).
+We've created a pre-customized version of the node_installer script from Findora which we host publicly on our [github page here](https://github.com/easy-node-one/findora-validator-scripts). Some of those changes include:
+- Adding in `fn` download and installation
+- Making user agnostic, capture the user name that launces the script and recycle later when using sudo commands to avoid setting permissions to root by default
+- Added a restart policy to the docker contianer to resume Findora validation if the server restarts unexpectedly
 
 <Callout type="warning" emoji="⚠️">
 If you're moving to a new server you can use this installation but see our notes on moving over tmp.gen.keypair and priv_validator_key.json [right here](https://guides.easynode.one/findora/moving) once your brand new separate validator is synced up.
