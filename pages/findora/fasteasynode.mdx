@@ -14,7 +14,7 @@ If you're moving to a new server you can use this installation but see our notes
 </Callout>
 
 ## Docker
-Install docker on your Ubuntu 20.04LTS system with the following command. If you user isn't `servicefindora` update that to be your username in the following code before running it on your server:
+With your new server online and logged in, install docker on your Ubuntu 20.04LTS system with the following command. If you user isn't `servicefindora` update that to be your username in the following code before running it on your server:
 ```text
 sudo apt update -y && sudo apt install apt-transport-https ca-certificates curl software-properties-common -y && curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add - && sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable" && sudo apt install docker-ce -y && sudo usermod -aG docker servicefindora
 ```
