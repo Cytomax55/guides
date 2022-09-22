@@ -16,8 +16,6 @@ users:
       - ssh-rsa AAAAB3N_YOUR_PUBLIC_KEY_HERE_Fti7WjTlcTKjUkFMDDcfi5Q==
 package_upgrade: true
 runcmd:
-  - curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add -
-  - add-apt-repository "deb [arch=$(dpkg --print-architecture)] https://download.docker.com/linux/debian $(lsb_release -cs) stable"
   - apt-get update
   - apt-get upgrade -y
   - curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
