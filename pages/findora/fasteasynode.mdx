@@ -2,7 +2,9 @@ import Callout from 'nextra-theme-docs/callout'
 import Image from 'next/image'
 
 # Easy Node's Findora "Automated" Validator Setup Guide
-This guide is for setting up a brand new wallet & validator for the first time. **Do not run this on your existing validator or your keys will be overwritten**
+This guide is for setting up a brand new wallet & validator for the first time. **Do not run this on your existing validator or your keys will be overwritten**  
+
+We've created a pre-customized version of the node_installer script from Findora which we host publicly on our [github page here](https://github.com/easy-node-one/findora-validator-scripts).
 
 <Callout type="warning" emoji="⚠️">
 If you're moving to a new server you can use this installation but see our notes on moving over tmp.gen.keypair and priv_validator_key.json [right here](https://guides.easynode.one/findora/moving) once your brand new separate validator is synced up.
@@ -28,7 +30,9 @@ Once you've logged back in and your user is in the docker group, run the folloin
 wget https://raw.githubusercontent.com/easy-node-one/findora-validator-scripts/main/node_init.sh -O node_init.sh && bash -x node_init.sh
 ```
 
+<Callout type="warning" emoji="⚠️">
 At this point you'll have a system that begins syncing automatically on the blockchain after the database download and unpacking completes. Wait for your `sync_status` to equal false before creating your validator or migrating to a new system.  
+</Callout>
 
 ## After Installation
 Some post installation tips once you stake and activate your validator.
