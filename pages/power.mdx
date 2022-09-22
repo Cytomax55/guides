@@ -1,0 +1,31 @@
+# Power Up!
+
+## cloud-init
+Do you use a provider that has cloud-init features? Here's a custom cloud init to install everything you need to get Harmony OR Findora running faster out of the box! Includes all prerequisits and installs docker for you.
+
+Simply replace the ssh-rsa key with your id_rsa.pub key and set the username you'd like (currently `serficefindora` in this example).
+
+```text
+#cloud-config
+users:
+  - name: servicefindora
+    groups: sudo
+    shell: /bin/bash
+    sudo: ['ALL=(ALL) NOPASSWD:ALL']
+    ssh-authorized-keys:
+      - ssh-rsa AAAAB3N_YOUR_PUBLIC_KEY_HERE_Fti7WjTlcTKjUkFMDDcfi5Q==
+package_upgrade: true
+runcmd:
+  - curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add -
+  - add-apt-repository "deb [arch=$(dpkg --print-architecture)] https://download.docker.com/linux/debian $(lsb_release -cs) stable"
+  - apt-get update
+  - apt-get upgrade -y
+  - curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+  - add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
+  - apt install apt-transport-https ca-certificates curl software-properties-common docker-ce docker-ce-cli containerd.io dnsutils nethogs python3-pip python3-dotenv -y
+  - systemctl start docker
+  - systemctl enable docker
+  - usermod -aG docker servicefindora
+  - cd
+  - wget https://raw.githubusercontent.com/easy-node-one/findora-validator-scripts/main/node_init.sh -O /home/servicefindora/node_init.sh
+  ```
