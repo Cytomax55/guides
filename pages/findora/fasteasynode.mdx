@@ -1,0 +1,63 @@
+import Callout from 'nextra-theme-docs/callout'
+import Image from 'next/image'
+
+# Easy Node's Findora "Automated" Validator Setup Guide
+This guide is for setting up a brand new wallet & validator for the first time. **Do not run this on your existing validator or your keys will be overwritten**
+
+<Callout type="warning" emoji="⚠️">
+If you're moving to a new server you can use this installation but see our notes on moving over tmp.gen.keypair and priv_validator_key.json [right here](https://guides.easynode.one/findora/moving) once your brand new separate validator is synced up.
+</Callout>
+
+## Docker
+Install docker on your Ubuntu 20.04LTS system with the following command. If you user isn't `servicefindora` update that to be your username in the following code before running it on your server:
+```text
+sudo apt update -y && sudo apt install apt-transport-https ca-certificates curl software-properties-common -y && curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add - && sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable" && sudo apt install docker-ce -y && sudo usermod -aG docker servicefindora
+```
+
+## Reconnect your session
+Disconnect from your server and reconnect. Verify your user account is in the docker group by running the following code:
+```text
+groups
+```
+
+Once you've verified your user is in the docker group you can continue to the run installer step.
+
+## Run Installer
+Once you've logged back in and your user is in the docker group, run the folloing code to install a fully brand new Findora Validator:
+```text
+wget https://raw.githubusercontent.com/easy-node-one/findora-validator-scripts/main/node_init.sh -O node_init.sh && bash -x node_init.sh
+```
+
+At this point you'll have a system that begins syncing automatically on the blockchain after the database download and unpacking completes. Wait for your `sync_status` to equal false before creating your validator or migrating to a new system.  
+
+## After Installation
+Some post installation tips once you stake and activate your validator.
+
+### Fund Validator
+See [this section](https://wiki.findora.org/docs/guides/auto-setup#fund-your-validator) for the latest information on funding your validator. Due to missed block fees/slashing we recommend a bit more than the minimum amount for your validator.
+
+### Create Validator, Stake FRA, Set Commission Rate, Start Validating and add to Dashboard
+See [this section](https://wiki.findora.org/docs/guides/auto-setup#stake-initial-fra-and-set-commission-rate) for information on customizing and sending the command to create your validator.
+
+After you sucessfully register your wallet and stake your initial Findora your validator will show up on the [staking dashboard](https://findorascan.io/nodes) along with the [SmartStake site](https://findora.smartstake.io/).
+
+### Backup Recovery Data Files
+Backup the following files, run `cat <filename>` to see the contents or use an sFTP program to transfer them to a secure location. These contain private information, do not share!!!
+
+```bash
+# Wallet recovery files
+tmp.gen.keypair or /data/findora/mainnet/mainnet_node.key
+node.mnemonic
+# Validator information file, this one can be recreated but handy to save
+staker_memo
+```
+
+Backup all files inside of the following folder as well:
+
+```bash
+# Validator recovery file
+/data/findora/mainnet/tendermint/config/
+```
+
+## Monitor Validator
+Check out our [Post Installation](/findora/post) section for the management commands!
