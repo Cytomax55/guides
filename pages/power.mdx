@@ -1,11 +1,11 @@
-# Power Up!
+# Power Users
 
 ## cloud-init
 Do you use a provider that has cloud-init features? Here's a custom cloud init to install everything you need to get Harmony OR Findora running faster out of the box!  
 
 Includes all prerequisits and installs docker for you.  
 
-To use the code below simply replace the ssh-rsa key with your id_rsa.pub key and set the username you'd like (currently `serficefindora` in this example). The cloud-init does take a few minutes to run and if you're installing findora you'll need to reconnect and verify your user is in the docker group.
+To use the code below simply replace the ssh-rsa key with your id_rsa.pub key and set the username you'd like (currently `serficefindora` in 4 spots this example). The cloud-init does take a few minutes to run and if you're installing findora you'll need to reconnect and verify your user is in the docker group.
 
 ```text
 #cloud-config
@@ -28,6 +28,7 @@ runcmd:
   - usermod -aG docker servicefindora
   - wget https://raw.githubusercontent.com/easy-node-one/findora-validator-scripts/main/node_init.sh -O /home/servicefindora/node_init.sh
   - git clone https://github.com/easy-node-one/validatortoolbox.git /home/servicefindora/validatortoolbox
+  - pip3 install 
   ```
 
 ## Findora
