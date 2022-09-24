@@ -49,7 +49,7 @@ docker stop findorad && docker rm findorad && rm -rf /data/findora/mainnet/tende
 ```
 
 I also shutdown the old server at this point to make sure there's 0 chance of double signing. You should be ok without shutting down but if you'd like to be safe run:
-```bash
+```text
 sudo init 0
 ```
 
@@ -60,7 +60,7 @@ From here on down the guide the following tasks are time dependent as you'll beg
 ### Back on your new server
 
 - Restart your Findorad Docker Container using the update_image_version script:
-```bash
+```text
 wget https://wiki.findora.org/assets/files/update_version_mainnet-4f20384f16d1f0e2d90e1f7ebc7ea935.sh && bash -x update_version_mainnet-4f20384f16d1f0e2d90e1f7ebc7ea935.sh
 ```  
 
