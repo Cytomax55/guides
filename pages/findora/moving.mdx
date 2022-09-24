@@ -20,10 +20,11 @@ When you get to running the automated script in the guide, you can make sure you
 The best method to avoid double signing is to [use our installation guide](https://guides.easynode.one/findora/easynode) to setup a totally separate, brand new validator, new wallet and new private key doing a normal installation of Findora. Load your server up to the point of waiting for catching up to be `true` before proceeding to upgrading.  
 
 ### On your new server
-Once you are fully syncronized on the new server you can now stop your new server's container and then begin replacing your key files.  
+Once you are fully syncronized on the new server you can now stop your new server's container and then begin replacing your key files. You will need to remove your current docker container with the temporary keys to build a container using the key you are migrating.
 
-```bash
-docker container stop findorad
+To stop and remove the current temporary validator container run the following code:
+```text
+docker stop findorad && docker rm findorad && rm -rf /data/findora/mainnet/tendermint/config/addrbook.json
 ```
 
 Verify your container is shut off by running `docker ps` and making sure that it no longer shows your findorad container as online.  
@@ -42,8 +43,8 @@ Verify wallet information is shown in `fn show` with your proper wallet address 
 ### On your old server
 Now is the time to stop your old server to avoid having double singing.
 
-Stop Docker To Stop Signing
-```bash
+Stop Docker To Stop Signing on your old server by running the following code:
+```text
 docker stop findorad && docker rm findorad && rm -rf /data/findora/mainnet/tendermint/config/addrbook.json
 ```
 
