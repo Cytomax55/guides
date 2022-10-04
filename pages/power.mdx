@@ -26,20 +26,18 @@ runcmd:
   - systemctl start docker
   - systemctl enable docker
   - usermod -aG docker serviceuser
-  - wget https://raw.githubusercontent.com/easy-node-one/findora-validator-scripts/main/node_init_mainnet.sh -O /home/serviceuser/node_init.sh
-  - git clone https://github.com/easy-node-one/validatortoolbox.git /home/serviceuser/validatortoolbox
   ```
 
 ## Findora
 To install a brand new Findora validator on a new wallet at this point simply run this once cloud-init downloads the file and you have docker group access:
 
 ```text
-bash -x node_init.sh
+cd ~/ && wget https://raw.githubusercontent.com/easy-node-one/findora-validator-scripts/main/node_init_mainnet.sh -O /home/serviceuser/node_init.sh && bash -x node_init.sh
 ```
 
 ## Harmony
 The toolbox is already pulled into your home directory from github, to launch the toolbox run the following code to get started:
 
 ```text
-cd validatortoolbox && pip3 install -r requirements.txt && python3 ~/validatortoolbox/toolbox/install.py
+cd ~/ && git clone https://github.com/easy-node-one/validatortoolbox.git /home/serviceuser/validatortoolbox && cd validatortoolbox && pip3 install -r requirements.txt && python3 ~/validatortoolbox/toolbox/install.py
 ```
