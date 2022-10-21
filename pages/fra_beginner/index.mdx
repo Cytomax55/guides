@@ -26,20 +26,83 @@ export const Stars = () => {
 
 # Findora Beginner Guide by EasyNode.Pro Validator
 
-![Easy Node Logo](/easynode_weblogo.png)
+### System Requirements[​](https://docs.findora.org/validators/validators-get-started#system-requirements) <a href="#system-requirements" id="system-requirements"></a>
 
-## About Easy Node
-We write guides and tools to help investors become validators on Harmony $ONE and Findora $FRA. Not everyone is a coder, we hope to give you the skills to manage your system daily while you install the software to get started.
+* Hardware Requirements:
+  * Minimum: 8GB RAM, 2 Core CPU (2.90GHz per core), 100GB Hard Disk
+  * Recommended: 16GB RAM, 4 Core CPU (2.90Ghz per core), 300GB Hard Disk
+    * ex) AWS T3 t3.2xlarge
+    * ex) AliCloud g6 g6.2xlarge
+    * ex) GCP n2 n2-standard-8
 
-Easy Node started as the validator `Slugom Crypto` back in March 2021. We've since released many tools for Validators and Delegators of Harmony ONE to utilize. We started validating on Findora in May 2022 and quickly updated our guides to include notes for people looking to run a Findora Validator.
+* Software Requirements:
+  * Ubuntu 20.04LTS or 22.04LTS Operating System
+  * User account with root access
+  * Docker installed
+  * User account granted Docker run access
+  
+### Step 1: Pull Findora docker image[​](https://wiki.findora.org/docs/validators/manual-setup#step-1-pull-findora-docker-image) <a href="#step-1-pull-findora-docker-image" id="step-1-pull-findora-docker-image"></a>
 
-You can find our current website at [EasyNode.ONE](https://easynode.one)!
+Navigate to your project folder and pull docker image. Here, we are downloading the `findorad` which is the node of the Findora Network. For security and stability reasons, make sure to download the live version. First we need to query the live version number
 
-You can find a deep dive on us in our [About Easy Node](/about) section.
+{% tabs %}
+{% tab title="Mainnet" %}
+```bash
+export LIVE_VERSION=$(curl -s https://prod-mainnet.prod.findora.org:8668/version | awk -F\  '{print $2}')
+export FINDORAD_IMG=findoranetwork/findorad:${LIVE_VERSION}
+```
+{% endtab %}
 
-### Findora Guides
+{% tab title="Testnet" %}
+```bash
+export LIVE_VERSION=$(curl -s https://prod-testnet.prod.findora.org:8668/version | awk -F\  '{print $2}')
+export FINDORAD_IMG=findoranetwork/findorad:${LIVE_VERSION}
+export CHECKPOINT_URL=https://prod-testnet-us-west-2-ec2-instance.s3.us-west-2.amazonaws.com/testnet/checkpoint
+```
+{% endtab %}
+{% endtabs %}
 
-## Validator Support Communities
+In this example, we get the live version is \`v0.3.27-release\`. Then we download the correct version by
+
+```bash
+docker pull ${FINDORAD_IMG}
+```
+
+<figure><img src="https://wiki.findora.org/img/validator_setup_guide/manual-setup-0.png" alt=""><figcaption></figcaption></figure>
+
+Verify you have the latest version by checking for the tag as seen in the picture below
+
+```bash
+docker image ls
+```
+
+<figure><img src="https://wiki.findora.org/img/validator_setup_guide/manual-setup-2.png" alt=""><figcaption></figcaption></figure>
+
+
+### Step 2: Setup CLI Tool[​​](https://docs.findora.org/validators/automated-setup#setup-fn-cli-tool) <a href="#setup-the-fn-cli-tool" id="setup-the-fn-cli-tool"></a>
+
+`fn`: Findora Node Setup (fn) is a command-line (CLI) utility that allows you to set up a validator node and stake/unstake FRA.
+
+{% tabs %}
+{% tab title="Linux version" %}
+{% file src="../.gitbook/assets/fn (1)" %}
+{% endtab %}
+
+{% tab title="MacOS version" %}
+{% file src="../.gitbook/assets/fn-mac" %}
+{% endtab %}
+{% endtabs %}
+
+Download the appropriate file and move to your path:
+
+```bash
+wget https://wiki.findora.org/bin/linux/fn
+chmod +x fn
+sudo mv fn /usr/local/bin/
+```
+
+
+#### Validator Support Communities
 While no setup help or support is officially provided and you are your own help desk, you can always ask for help in:
 - [Findora Discord Server](https://discord.com/invite/findora) the top spot for all official Findora questions and commuincations.
 - [Findora Validator Support Telegram Channel](https://t.me/findora_validators) is the best spot for incoming Findora Validators to ask questions.
