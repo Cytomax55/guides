@@ -41,7 +41,7 @@ export const Stars = () => {
   * Docker installed
   * User account granted Docker run access
   
-### Step 1: Pull Findora docker image[​](https://wiki.findora.org/docs/validators/manual-setup#step-1-pull-findora-docker-image) <a href="#step-1-pull-findora-docker-image" id="step-1-pull-findora-docker-image"></a>
+### Step 1: Pull Findora docker image[​](https://docs.findora.org/docs/validators/manual-setup#step-1-pull-findora-docker-image) <a href="#step-1-pull-findora-docker-image" id="step-1-pull-findora-docker-image"></a>
 
 Navigate to your project folder and pull docker image. Here, we are downloading the `findorad` which is the node of the Findora Network. For security and stability reasons, make sure to download the live version. First we need to query the live version number
 
@@ -68,16 +68,11 @@ In this example, we get the live version is \`v0.3.27-release\`. Then we downloa
 docker pull ${FINDORAD_IMG}
 ```
 
-<figure><img src="https://wiki.findora.org/img/validator_setup_guide/manual-setup-0.png" alt=""><figcaption></figcaption></figure>
-
 Verify you have the latest version by checking for the tag as seen in the picture below
 
 ```bash
 docker image ls
 ```
-
-<figure><img src="https://wiki.findora.org/img/validator_setup_guide/manual-setup-2.png" alt=""><figcaption></figcaption></figure>
-
 
 ### Step 2: Setup CLI Tool[​​](https://docs.findora.org/validators/automated-setup#setup-fn-cli-tool) <a href="#setup-the-fn-cli-tool" id="setup-the-fn-cli-tool"></a>
 
@@ -96,12 +91,12 @@ docker image ls
 Download the appropriate file and move to your path:
 
 ```bash
-wget https://wiki.findora.org/bin/linux/fn
+wget https://docs.findora.org/bin/linux/fn
 chmod +x fn
 sudo mv fn /usr/local/bin/
 ```
 
-### Step 3: Configure Local Node[​](https://wiki.findora.org/docs/validators/manual-setup#step-3-configure-local-node) <a href="#step-3-configure-local-node" id="step-3-configure-local-node"></a>
+### Step 3: Configure Local Node[​](https://docs.findora.org/docs/validators/manual-setup#step-3-configure-local-node) <a href="#step-3-configure-local-node" id="step-3-configure-local-node"></a>
 
 1.  Set Environment Path Variables
 
@@ -111,7 +106,7 @@ sudo mv fn /usr/local/bin/
 
 
 
-    <figure><img src="https://wiki.findora.org/img/validator_setup_guide/manual-setup-5.png" alt=""><figcaption></figcaption></figure>
+    <figure><img src="https://docs.findora.org/img/validator_setup_guide/manual-setup-5.png" alt=""><figcaption></figcaption></figure>
 2.  Create ledger data directory
 
     First we are going to clean up any old data you might have by removing the ROOT\_DIR folder. Be sure to backup all your keys (validator, node and wallet key) before removing this directory.
@@ -181,8 +176,6 @@ export CHAINDATA_URL=$(cut -d , -f 1 "${ROOT_DIR}/latest")
 
 Run `echo $CHAINDATA_URL` to verify the link
 
-<figure><img src="https://wiki.findora.org/img/validator_setup_guide/manual-setup-6.png" alt=""><figcaption></figcaption></figure>
-
 1.  Download the Data
 
     Next, you need to download the data from the link you got in the step above. This might take a while.
@@ -204,13 +197,12 @@ Run `echo $CHAINDATA_URL` to verify the link
     rm -rf ${ROOT_DIR}/snapshot_data
     ```
 
-    <figure><img src="https://wiki.findora.org/img/validator_setup_guide/manual-setup-7.png" alt=""><figcaption></figcaption></figure>
 
 > **NOTE**
 >
 > If you encounter a security issue error when trying to initialize findora node, you may need to manually approve its security privileges in your OS first and then re-run the command again.
 
-### Step 4: Generate Staking Key[​](https://wiki.findora.org/docs/validators/manual-setup#step-4-generate-staking-key) <a href="#step-4-generate-staking-key" id="step-4-generate-staking-key"></a>
+### Step 4: Generate Staking Key[​](https://docs.findora.org/docs/validators/manual-setup#step-4-generate-staking-key) <a href="#step-4-generate-staking-key" id="step-4-generate-staking-key"></a>
 
 1.  Generate Keys
 
@@ -270,7 +262,7 @@ Example:
 echo "repair drink action brass term blur fat doll spoon thumb raise squirrel tornado engine tumble picnic approve elegant tube urge ghost secret seminar blame" > ${ROOT_DIR}/node.mnemonic
 ```
 
-### Step 5: Connect to the Network[​](https://wiki.findora.org/docs/validators/manual-setup#step-5-connect-to-the-network) <a href="#step-5-connect-to-the-network" id="step-5-connect-to-the-network"></a>
+### Step 5: Connect to the Network[​](https://docs.findora.org/docs/validators/manual-setup#step-5-connect-to-the-network) <a href="#step-5-connect-to-the-network" id="step-5-connect-to-the-network"></a>
 
 To connect `fn` with the Findora Network, use this command:
 
@@ -302,7 +294,7 @@ To connect your Node Key to `fn`, use the command below.
 fn setup -K <path to validator key> || exit 1
 ```
 
-### Step 6: Start or Upgrade Local Node[​](https://wiki.findora.org/docs/validators/manual-setup#step-6-start-or-upgrade-local-node) <a href="#step-6-start-or-upgrade-local-node" id="step-6-start-or-upgrade-local-node"></a>
+### Step 6: Start or Upgrade Local Node[​](https://docs.findora.org/docs/validators/manual-setup#step-6-start-or-upgrade-local-node) <a href="#step-6-start-or-upgrade-local-node" id="step-6-start-or-upgrade-local-node"></a>
 
 Stop your local container if necessary using this command:
 
@@ -364,7 +356,7 @@ Logging for Node:
 docker logs -f findorad
 ```
 
-### Step 7: Check Local Node Status[​](https://wiki.findora.org/docs/validators/manual-setup#step-7-check-local-node-status) <a href="#step-7-check-local-node-status" id="step-7-check-local-node-status"></a>
+### Step 7: Check Local Node Status[​](https://docs.findora.org/docs/validators/manual-setup#step-7-check-local-node-status) <a href="#step-7-check-local-node-status" id="step-7-check-local-node-status"></a>
 
 If the following commands return status messages without any errors, then your node has been successfully configured and started
 
@@ -375,7 +367,7 @@ curl 'http://localhost:8668/version' # Only if you set the 'ENABLE_LEDGER_SERVIC
 curl 'http://localhost:8667/version' # Only if you set the 'ENABLE_QUERY_SERVICE'
 ```
 
-### Step 8: Check Signing[​](https://wiki.findora.org/docs/validators/manual-setup#step-8-check-signing) <a href="#step-8-check-signing" id="step-8-check-signing"></a>
+### Step 8: Check Signing[​](https://docs.findora.org/docs/validators/manual-setup#step-8-check-signing) <a href="#step-8-check-signing" id="step-8-check-signing"></a>
 
 Run the following on console on your server to show the latest stats.
 
