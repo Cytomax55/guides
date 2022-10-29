@@ -13,7 +13,7 @@ We find that only using the automated setup has some challenges unless you're co
 
 Findora runs in a docker container and has an automated setup tool. With a little massaging you can get this to run flawlessly with a regular user account and not using root.
 
-We will often reference the [Findora Automated Validator Setup Guide](https://wiki.findora.org/docs/guides/auto-setup) please have this open as well.
+We will often reference the [Findora Automated Validator Setup Guide](https://docs.findora.org/guides/auto-setup) please have this open as well.
 
 ### Cheat Sheet
 We suggest building a "Cheat Sheet" for your preferences as you go through our commands. Copy the code bubbles and customize if necessary. Each bubble will have instructions above them if there's customization requirements.
@@ -89,7 +89,7 @@ Run the following to download and setup the main app `fn`:
 
 ```bash
 # download and move to your path
-wget https://wiki.findora.org/bin/linux/fn && chmod +x fn && sudo mv fn /usr/local/bin/
+wget https://github.com/FindoraNetwork/findora-wiki-docs/raw/main/.gitbook/assets/fn && chmod +x fn && sudo mv fn /usr/local/bin/
 ```
 
 ### Create Wallet, Directory Structure, and Move Keys
@@ -150,14 +150,14 @@ docker run -d \
 
 ### Download Auto Installation Script
 
-See [this link](https://wiki.findora.org/docs/guides/auto-setup#download-and-run-the-automated-setup-script) to get the most updated version of the **node_init_mainnet.sh** script to run. Simply right click the link and copy the shortcut to use in the commands below:
+See [this link](https://docs.findora.org/guides/auto-setup#download-and-run-the-automated-setup-script) to get the most updated version of the **node_init_mainnet.sh** script to run. Simply right click the link and copy the shortcut to use in the commands below:
 
 ```bash
-wget https://wiki.findora.org/assets/files/node_init_mainnet-423a36f2adaaeab9de7ff63e61d3d4c1.sh
+wget https://338489037-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2FRzwHg4ShKVrXd4rywBQ8%2Fuploads%2FqDNTif7TMchbvixIFt2e%2Fnode_init_mainnet.sh?alt=media&token=3a9b95a1-ac40-41c4-b74d-5a560b128be1 -O node_init_mainnet.sh
 ```
 
 ### Edit Script
-We suggest making two modifications to the script before you run it to allow everything to flow as your regular user account.
+We suggest making two modifications to the node_init_mainnet.sh script before you run it to allow everything to flow as your regular user account.
 
 Edit the file you download with the following changes so it works with our regular user account using `nano` or `vim`:
 
@@ -172,17 +172,17 @@ sudo chown -R servicefindora:servicefindora /data/findora
 You should now be ready to run the automated installation script. This will pull in all files need and extract them. It may take 15+ minutes for this to complete but if all is successful you will be online and the database will be syncing:
 
 ```bash
-bash -x node_init_mainnet-423a36f2adaaeab9de7ff63e61d3d4c1.sh
+bash -x node_init_mainnet.sh
 ```
 
 ## After Installation
 Some post installation tips once you stake and activate your validator.
 
 ### Fund Validator
-See [this section](https://wiki.findora.org/docs/guides/auto-setup#fund-your-validator) for the latest information on funding your validator. Due to missed block fees/slashing we recommend a bit more than the minimum amount for your validator.
+See [this section](https://docs.findora.org/guides/auto-setup#fund-your-validator) for the latest information on funding your validator. Due to missed block fees/slashing we recommend a bit more than the minimum amount for your validator.
 
 ### Create Validator, Stake FRA, Set Commission Rate, Start Validating and add to Dashboard
-See [this section](https://wiki.findora.org/docs/guides/auto-setup#stake-initial-fra-and-set-commission-rate) for information on customizing and sending the command to create your validator.
+See [this section](https://docs.findora.org/guides/auto-setup#stake-initial-fra-and-set-commission-rate) for information on customizing and sending the command to create your validator.
 
 After you sucessfully register your wallet and stake your initial Findora your validator will show up on the [staking dashboard](https://findorascan.io/nodes) along with the [SmartStake site](https://findora.smartstake.io/).
 
