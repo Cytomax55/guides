@@ -19,6 +19,19 @@ Backup all files inside of the following folder as well:
 /data/findora/mainnet/tendermint/config/
 ```
 
+## Troubleshooting Process
+First, check to see if your docker container is running:
+```bash
+docker ps
+```
+
+If no container is listed, check your docker logs by running:
+```bash
+docker logs findorad
+```
+
+Resolve error or attempt to attempt restart findora with the update_version.sh script.
+
 ## Common Commands
 The most commonly used commands and how to find the rest that may be needed.
 
