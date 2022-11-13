@@ -9,9 +9,61 @@ You should already have a backup copy of the following files & folders:
 
 ```text
 ~/tmp.gen.keypair
+~/staker_memo
 /data/findora/mainnet/node.mnemonic
 /data/findora/mainnet/mainnet_node.key
 /data/findora/mainnet/tendermint/config/
+
+
+# BACKUP OLD FILES FROM OLD SERVER
+
+sudo scp -r servicefindora@IP.of.OLD.validator:/home/servicefindora/tmp.gen.keypair /home/$USERNAME/Desktop/Backup/
+
+sudo scp -r servicefindora@IP.of.OLD.validator:/home/servicefindora/staker_memo /home/$USERNAME/Desktop/Backup/
+
+sudo scp -r servicefindora@IP.of.OLD.validator:/data/findora/mainnet/node.mnemonic /home/$USERNAME/Desktop/Backup/
+
+sudo scp -r servicefindora@IP.of.OLD.validator:/data/findora/mainnet/mainnet_node.key /home/$USERNAME/Desktop/Backup/
+
+sudo scp -r servicefindora@IP.of.OLD.validator:/data/findora/mainnet/tendermint/config /home/$USERNAME/Desktop/Backup/
+
+
+
+# STOP AND REMOVE CONTAINER OF NEW VALIDATOR
+
+ssh servicefindora@IP.of.NEW.validator
+docker stop findorad && docker rm findorad && rm -rf /data/findora/mainnet/tendermint/config/addrbook.json
+docker ps -a
+exit
+
+# ON YOUR LOCAL COMPUTER
+# TRANSFER THE OLD FILES TO THE NEW SERVER
+
+sudo scp -r /home/$USERNAME/Desktop/Backup/tmp.gen.keypair servicefindora@IP.of.NEW.validator:/home/servicefindora/
+
+sudo scp -r /home/$USERNAME/Desktop/Backup/staker_memo servicefindora@IP.of.NEW.validator:/home/servicefindora/
+
+sudo scp -r /home/$USERNAME/Desktop/Backup/node.mnemonic servicefindora@IP.of.NEW.validator:/data/findora/mainnet/
+
+sudo scp -r /home/$USERNAME/Desktop/Backup/mainnet_node.key servicefindora@IP.of.NEW.validator:/data/findora/mainnet/
+
+
+
+# NEW VALIDATOR RENAME the /data/findora/mainnet/tendermint/config folder to make space for the transfer
+ssh servicefindora@IP.of.NEW.validator
+cd /data/findora/mainnet/tendermint
+mv config config.bk
+exit
+
+
+# ON LOCAL COMPUTER
+sudo scp -i /home/$USERNAME/.ssh/id_rsa -r /home/$USERNAME/Desktop/Backup/config servicefindora@IP.of.NEW.validator:/data/findora/mainnet/tendermint/config
+
+
+# NEW VALIDATOR
+ssh servicefindora@IP.of.NEW.validator
+chmod 755 /findora/mainnet/tendermint/config
+
 ```
 
 When you get to running the automated script in the guide, you can make sure you've updated both of these files before you run the bash script to install.
